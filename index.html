@@ -18,11 +18,20 @@
 
     <div class="d-flex align-items-center">
       <div class = "m-auto">
-        <input type="text" class="form control" id="exampleFormControlInput1" placeholder="Enter a text" size = '27'>
-        <input type="text" maxlength="0" style="width: 50px;" class="form control mx-1" id="exampleFormControlInput2">
-        <input type="number" min='1' max='12' step='1'  style="width: 45px;" class="form control me-1" id="exampleFormControlInput3">~
-        <input type="number" min='1' max='12' step='1' style="width: 45px;" class="form control" id="exampleFormControlInput4">
-        <button type="button" id="add" class="btn btn-sm btn-primary ms-1 text-nowrap mb-1"><i class="bi bi-plus"></i>Add</button>
+        <input type="text" class="form control" id="newClassTitle" placeholder="과목명" size = '27'>
+        <select name="day" id="newClassDay" style="height:30px">
+          <option value="월">월</option>
+          <option value="화">화</option>
+          <option value="수">수</option>
+          <option value="목">목</option>
+          <option value="금">금</option>
+        </select>
+        요일
+        <input type="number" value="9" min='9' max='21' step='1'  style="width: 45px;" class="form control me-1" id="StartHour">:
+        <input type="number" value="00" min='00' max='59' step='1'  style="width: 45px;" class="form control me-1" id="StartMinute">~
+        <input type="number" value="10" min='9' max='22' step='1'  style="width: 45px;" class="form control me-1" id="EndHour">:
+        <input type="number" value="15" min='00' max='59' step='1'  style="width: 45px;" class="form control me-1" id="EndMinute">
+        <button type="button" id="addClass" class="btn btn-sm btn-primary ms-1 text-nowrap mb-1"><i class="bi bi-plus"></i>Add</button>
       </div>
     </div>
     <div class="timetable">
@@ -58,17 +67,13 @@
                   <div class="hour">오후 7시</div>
                   <div class="hour">오후 8시</div>
                   <div class="hour">오후 9시</div>
-                  <div class="hour">오후 10시</div>
-                  <div class="hour">오후 11시</div>
                 </div>
               </th>
               <td>
-                <div class="cols">
-                  <div class="subject color2" style="position: absolute; top: 60px; height: 150px;"></div>
+                <div class="cols" id="월">
+                  <div class="subject color2" style="position: absolute; top: 60px; height: 151px;"></div>
                 </div>
                 <div class="grids">
-                  <div class="grid"></div>
-                  <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
@@ -85,12 +90,10 @@
                 </div>
               </td>
               <td>
-                <div class="cols">
-                  <div class="subject color2" style="position: absolute; top: 211px; height: 150px;"></div>
+                <div class="cols" id="화">
+                  <div class="subject color2" style="position: absolute; top: 210px; height: 151px;"></div>
                 </div>
                 <div class="grids">
-                  <div class="grid"></div>
-                  <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
@@ -107,11 +110,9 @@
                 </div>
               </td>
               <td>
-                <div class="cols">
+                <div class="cols" id="수">
                 </div>
                 <div class="grids">
-                  <div class="grid"></div>
-                  <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
@@ -128,11 +129,9 @@
                 </div>
               </td>
               <td>
-                <div class="cols">
+                <div class="cols" id="목">
                 </div>
                 <div class="grids">
-                  <div class="grid"></div>
-                  <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
@@ -149,13 +148,9 @@
                 </div>
               </td>
               <td>
-                <div class="cols">
-                  <div class="subject color1" style="position: absolute; top: 60px; height: 75px;"></div>
-                  <div class="subject color1" style="position: absolute; top: 134px; height: 75px;"></div>
+                <div class="cols" id="금">
                 </div>
                 <div class="grids">
-                  <div class="grid"></div>
-                  <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
                   <div class="grid"></div>
@@ -191,4 +186,128 @@
     </div>
 
   </body>
+  <script>
+
+    let classes = [];
+
+    let addClassBtn = document.querySelector("#addClass");
+    addClassBtn.addEventListener("click", addTable);
+    
+    function addTable (){
+      // 1. read input
+      let _title = document.querySelector("#newClassTitle");
+      let _day = document.querySelector("#newClassDay");
+      let _sHour = document.querySelector("#StartHour");
+      let _sMinute = document.querySelector("#StartMinute");
+      let _eHour = document.querySelector("#EndHour");
+      let _eMinute = document.querySelector("#EndMinute");
+
+      let title = _title.value;
+      let day = _day.value;
+      let sHour = _sHour.value;
+      let sMinute = _sMinute.value;
+      let eHour = _eHour.value;
+      let eMinute = _eMinute.value;
+
+      // 2. create class object
+      let _class = {
+        title: title,
+        day: day,
+        sHour: Number(sHour),
+        sMinute: Number(sMinute),
+        eHour: Number(eHour),
+        eMinute: Number(eMinute)
+      };
+
+      console.log(_class);
+      // 2.5 exception handling
+      if (!valid_check(_class))
+        return;
+      
+
+
+      // 3. Append to class list
+      classes.push(_class);
+      //saveClasses();
+
+      // 4. Create new class item and attach it to time-table
+      addToTable(_class);
+
+      // 5. Clear the input
+      _title.value = "";
+      _day.value = "월";
+      _sHour.value = "9";
+      _sMinute.value = "00";
+      _eHour.value = "10";
+      _eMinute.value = "15";
+    }
+
+    function valid_check(_class){
+      if(_class.title.length == 0){
+        alert("과목명을 입력해주세요.");
+        return false;
+      } 
+      if(_class.sHour < 9 || _class.sHour > 21 || _class.sMinute < 0 || _class.sMinute > 59 || _class.eHour < 9 || _class.eHour > 22 || _class.eMinute < 0 || _class.eMinute > 59){
+        alert("적당한 시간을 입력해 주세요.");
+        return false;
+      }
+      if(_class.eHour == 22 && _class.eMinute != 0){
+        alert("종료시간은 22시 00분까지만 입력 가능합니다.");
+        return false;
+      }
+
+      _classStart = _class.sHour * 60 + _class.sMinute;
+      _classEnd = _class.eHour * 60 + _class.eMinute;
+      if(_classStart >= _classEnd){
+        alert("시작시간은 종료시간보다 빨라야 합니다.");
+        return false;
+        } 
+
+      for(var i in classes){
+        if(classes[i].day === _class.day){
+          iStart = classes[i].sHour * 60 + classes[i].sMinute;
+          iEnd = classes[i].eHour * 60 + classes[i].eMinute;
+          console.log(iStart);
+          console.log(iEnd);
+          console.log(_classStart);
+          if(iStart <= _classStart && _classStart < iEnd){
+            alert("다른 수업과 시간이 겹칩니다.");
+            return false;
+          }
+          if(iStart < _classEnd && _classEnd <= iEnd){
+            alert("다른 수업과 시간이 겹칩니다.");
+            return false;
+          }
+          if(iStart > _classStart && iEnd < _classEnd){
+            alert("다른 수업과 시간이 겹칩니다.");
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function addToTable(_class){
+      let div = document.createElement("div");
+      div.className = "subject color1";
+      
+      _classStart = _class.sHour * 60 + _class.sMinute;
+      console.log(_classStart);
+      _classEnd = _class.eHour * 60 + _class.eMinute;
+      _classHeight = _classEnd - _classStart + 1;
+      _classTop = _classStart - 540;
+
+      div.style.setProperty('position', 'absolute');
+      div.style.setProperty('top', _classTop + 'px');
+      div.style.setProperty('height', _classHeight + 'px');
+
+      // TO-do : 내부 구성요소 추가 & 삭제버튼 구현
+
+      
+      // 시간표 화면에 추가
+      let col = document.querySelector("#"+_class.day);
+      col.appendChild(div);
+    }
+
+  </script>
 </html>
