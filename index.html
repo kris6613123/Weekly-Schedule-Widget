@@ -289,7 +289,7 @@
 
     function addToTable(_class){
       let div = document.createElement("div");
-      div.className = "subject color1";
+      div.className = "subject color1 d-flex align-items-center";
       
       _classStart = _class.sHour * 60 + _class.sMinute;
       console.log(_classStart);
@@ -302,7 +302,20 @@
       div.style.setProperty('height', _classHeight + 'px');
 
       // TO-do : 내부 구성요소 추가 & 삭제버튼 구현
+      let span = document.createElement("span");
+      span.className = "me-auto ms-2";
 
+      span.textContent = _class.title;
+      div.appendChild(span);
+
+      let buttonRemove = document.createElement("button");
+      buttonRemove.className = "btn btn-sm btn-danger me-2";
+      buttonRemove.innerHTML = '<i class="bi bi-x"></i>';
+      div.appendChild(buttonRemove);
+      buttonRemove.addEventListener("click", () => {
+        div.remove();
+        classes = classes.filter(t => t !== _class);
+      });
       
       // 시간표 화면에 추가
       let col = document.querySelector("#"+_class.day);
