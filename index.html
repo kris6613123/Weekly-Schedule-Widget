@@ -189,6 +189,7 @@
   <script>
 
     let classes = [];
+    let notes = [];
 
     let addClassBtn = document.querySelector("#addClass");
     addClassBtn.addEventListener("click", addTable);
@@ -228,7 +229,7 @@
 
       // 3. Append to class list
       classes.push(_class);
-      //saveClasses();
+      saveClasses();
 
       // 4. Create new class item and attach it to time-table
       addToTable(_class);
@@ -287,6 +288,23 @@
       return true;
     }
 
+    function saveClasses() {
+      localStorage.setItem("classes", JSON.stringify(classes));
+    }
+    window.addEventListener("load", () => {
+        loadClasses();
+    });
+    function loadClasses() {
+      let lastClasses = localStorage.getItem("classes");
+      if (!lastClasses) return;
+      classes = JSON.parse(lastClasses);
+      classes.forEach(t => {
+        addToTable(t);
+      });
+    }
+
+
+
     function addToTable(_class){
       let div = document.createElement("div");
       div.className = "subject color1 d-flex align-items-center";
@@ -315,12 +333,14 @@
       buttonRemove.addEventListener("click", () => {
         div.remove();
         classes = classes.filter(t => t !== _class);
+        saveClasses();
       });
       
       // 시간표 화면에 추가
       let col = document.querySelector("#"+_class.day);
       col.appendChild(div);
     }
+
 
 let inputBox = document.getElementById('form-control');
 let addButton = document.getElementById('btn btn-primary ms-1 text-nowrap');
