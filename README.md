@@ -12,9 +12,9 @@ html, css, javascript 로 구현하였으며, 사용자가 입력한 데이터�
 
 ### Installation
 
-1. Releases 접속
+1. [Releases](https://github.com/kris6613123/Weekly-Schedule-Widget/releases) 접속
 
-2. 아래의 그림과 같이 버전 1.0.0의 설치파일 weekly-schedule-widget-main-Setup-1.0.0.exe 을 다운로드
+2. 아래의 그림과 같이 버전 최신버전의 설치파일 weekly-schedule-widget-main-Setup-*.exe 을 다운로드
 
 3. 다운로드된 파일을 열어 설치 후 실행 
 
