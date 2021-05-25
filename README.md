@@ -34,15 +34,18 @@ test
   +지우고 싶은 메모 우측에 있는 삭제 버튼을 누르면 해당 메모 삭제 
 
  
-### example 
+### Example 
 
 
 
-### screenshot of our App
+### Screenshot of our App
 ![프로젝트 캡처](https://user-images.githubusercontent.com/54178500/119458342-9b592280-bd77-11eb-9231-a755f39edd8f.PNG)
 
 
 ### Demo
 
 https://youtu.be/M9EPIMFg5Yg
+
+### License
+Licensed under the MIT license.
 
