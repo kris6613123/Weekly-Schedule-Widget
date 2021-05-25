@@ -16,7 +16,7 @@ Not supported Yet.
 test
 ```
 
-### Usage
+### How To Use
 
 1. class add 
   +수업이름과 요일, 시간을 입력하고 add를 누르면 화면에 해당 수업 표시
