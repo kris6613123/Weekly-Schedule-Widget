@@ -106,6 +106,7 @@ div.timetable{
 }
 body{
   overflow-y: scroll;
+  min-width: 820px;
 }
 
 #noteList{
