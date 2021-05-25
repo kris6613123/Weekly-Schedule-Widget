@@ -10,4 +10,6 @@ test
 ### Usage
 How to use?
 
+### License
+Licensed under the MIT license.
 
