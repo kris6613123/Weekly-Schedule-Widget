@@ -39,7 +39,8 @@ test
 
 
 ### screenshot of our App
-![프로젝트 캡처](https://user-images.githubusercontent.com/54178500/119440534-7658b580-bd5f-11eb-9b07-060359f80731.PNG)
+![프로젝트 캡처](https://user-images.githubusercontent.com/54178500/119458342-9b592280-bd77-11eb-9231-a755f39edd8f.PNG)
+
 
 ### demo
 
