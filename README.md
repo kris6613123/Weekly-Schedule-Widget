@@ -48,6 +48,25 @@ html, css, javascript 로 구현하였으며, 사용자가 입력한 데이터�
 ### Screenshot of our App
 ![프로젝트 캡처](https://user-images.githubusercontent.com/54178500/119458342-9b592280-bd77-11eb-9231-a755f39edd8f.PNG)
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+### Build
+Weekly-Schedule-Widget은 [Electron](https://electronjs.org/)을 기반으로 UI는 [bootstrap](https://getbootstrap.com/)을 사용하여 작성되었습니다. GitHub Repository에 새로운 tag가 추가되면 자동으로 빌드하는 action이 [.github/workflows/main.yml](https://github.com/kris6613123/Weekly-Schedule-Widget/blob/main/.github/workflows/main.yml)에 있어 tag 추가시 별도의 작업 없이 자동으로 빌드됩니다.
+
+직접 빌드해서 Portable 버전으로 사용하시려면 아래와 같이 진행하십시오.
+1. electron-forge설치
+```
+$ npm install --save-dev @electron-forge/cli
+$ npx electron-forge import
+```
+2. Electron-forge 빌드
+```
+$ npm run make
+```
+3. 실행파일 위치
+```
+.\out\weekly-schedule-widget-main-win32-x64\weekly-schedule-widget-main.exe
+```
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
