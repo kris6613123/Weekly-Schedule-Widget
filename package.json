@@ -1,6 +1,6 @@
 {
   "name": "weekly-schedule-widget-main",
-  "version": "1.0.1",
+  "version": "1.0.0,
   "description": "Shows weekly schedule time table on your desktop",
   "main": "main.js",
   "scripts": {
