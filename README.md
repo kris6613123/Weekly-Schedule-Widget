@@ -1,4 +1,4 @@
-# App name- Weekly-Schedule-Widget
+# Weekly-Schedule-Widget
 Shows weekly schedule time table on your desktop
 
 -------------------------------------------------------------------------------------------------------------------------------------
