@@ -88,7 +88,6 @@ div.subject{
   z-index: 10;
   margin-bottom: -1px;
 }
-
 div.hours{
   z-index: 12;
 }
@@ -108,17 +107,18 @@ body{
   overflow-y: scroll;
   min-width: 820px;
 }
-
 #noteList{
   overflow-y: scroll;
   height: 140px;
 
 }
-
-
 div.color1{
   background-color: #FFF8CC;
 }
 div.color2{
   background-color: #ffe9e9;
+}
+span.warnMsg{
+  color: red;
+  font-weight: bolder;
 }
