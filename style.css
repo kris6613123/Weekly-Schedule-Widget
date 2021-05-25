@@ -40,7 +40,9 @@ td {
 .mx-auto {
   border: 2px solid #d2d2d2;
   border-collapse: collapse;
-  height: 120px;
+  height: 175px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 #t {
   font-size: 1.2em;
@@ -68,7 +70,6 @@ div.grids{
 div.cols{
   position: absolute;
   z-index: 11;
-  /* width: 100%; */
 }
 div.grid{
   border-top: 1px solid #d2d2d2;
@@ -104,10 +105,15 @@ div.timetable{
   margin-bottom: 10px;
 }
 body{
-  overflow: hidden;
+  overflow-y: scroll;
+  min-width: 820px;
 }
 
+#noteList{
+  overflow-y: scroll;
+  height: 140px;
 
+}
 
 
 div.color1{
