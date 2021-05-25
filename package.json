@@ -1,0 +1,55 @@
+{
+  "name": "weekly-schedule-widget-main",
+  "version": "1.0.1",
+  "description": "Shows weekly schedule time table on your desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --windows",
+    "release": "electron-builder --windows --publish always"
+  },
+  "author": "2021-1_SKKUOSS_Team14",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "electron": "^13.0.0",
+    "electron-builder": "^22.10.5"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "weekly_schedule_widget_main"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
