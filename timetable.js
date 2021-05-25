@@ -7,6 +7,12 @@ let notes = [];
 
 let addClassBtn = document.querySelector("#addClass");
 addClassBtn.addEventListener("click", addTable);
+let warnMsg = document.getElementById("warnMsg");
+let topbox = document.getElementById("newClassTitle");
+
+topbox.addEventListener("focus", ()=>{
+    warnning("");
+});
 
 function addTable (){
     // 1. read input
@@ -34,7 +40,6 @@ function addTable (){
         eMinute: Number(eMinute)
     };
 
-    console.log(_class);
     // 2.5 exception handling
     if (!valid_check(_class))
     return;
@@ -53,26 +58,35 @@ function addTable (){
     _sMinute.value = "00";
     _eHour.value = "10";
     _eMinute.value = "15";
+
+    // 6. Clear Warnning Msg
+    warnning("");
+}
+
+
+
+function warnning(msg){
+    warnMsg.textContent = msg;
 }
 
 function valid_check(_class){
     if(_class.title.length == 0){
-        alert("과목명을 입력해주세요.");
+        warnning("과목명을 입력해주세요.");
         return false;
     } 
     if(_class.sHour < 9 || _class.sHour > 21 || _class.sMinute < 0 || _class.sMinute > 59 || _class.eHour < 9 || _class.eHour > 22 || _class.eMinute < 0 || _class.eMinute > 59){
-        alert("적당한 시간을 입력해 주세요.");
+        warnning("적당한 시간을 입력해 주세요.");
         return false;
     }
     if(_class.eHour == 22 && _class.eMinute != 0){
-        alert("종료시간은 22시 00분까지만 입력 가능합니다.");
+        warnning("종료시간은 22시 00분까지만 입력 가능합니다.");
         return false;
     }
 
     _classStart = _class.sHour * 60 + _class.sMinute;
     _classEnd = _class.eHour * 60 + _class.eMinute;
     if(_classStart >= _classEnd){
-        alert("시작시간은 종료시간보다 빨라야 합니다.");
+        warnning("시작시간은 종료시간보다 빨라야 합니다.");
         return false;
     } 
 
@@ -80,19 +94,16 @@ function valid_check(_class){
         if(classes[i].day === _class.day){
             iStart = classes[i].sHour * 60 + classes[i].sMinute;
             iEnd = classes[i].eHour * 60 + classes[i].eMinute;
-            console.log(iStart);
-            console.log(iEnd);
-            console.log(_classStart);
             if(iStart <= _classStart && _classStart < iEnd){
-                alert("다른 수업과 시간이 겹칩니다.");
+                warnning("다른 수업과 시간이 겹칩니다.");
                 return false;
             }
             if(iStart < _classEnd && _classEnd <= iEnd){
-                alert("다른 수업과 시간이 겹칩니다.");
+                warnning("다른 수업과 시간이 겹칩니다.");
                 return false;
             }
             if(iStart > _classStart && iEnd < _classEnd){
-                alert("다른 수업과 시간이 겹칩니다.");
+                warnning("다른 수업과 시간이 겹칩니다.");
                 return false;
             }
         }
