@@ -42,7 +42,7 @@ test
 ![프로젝트 캡처](https://user-images.githubusercontent.com/54178500/119458342-9b592280-bd77-11eb-9231-a755f39edd8f.PNG)
 
 
-### demo
+### Demo
 
 https://youtu.be/M9EPIMFg5Yg
 
